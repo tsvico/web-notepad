@@ -1,5 +1,6 @@
-# Minimalist Web Notepad
+# Web Notepad
 
+支持 markdown
 This is an open source clone of notepad.cc, which is now defunct.
 
 See demo at https://notes.orga.cat or https://notes.orga.cat/whatever.
@@ -23,6 +24,7 @@ See [How To Set Up mod_rewrite for Apache](https://www.digitalocean.com/communit
 To enable URL rewriting, put something like this in your configuration file:
 
 If notepad is in the root directory:
+
 ```
 location / {
     rewrite ^/([a-zA-Z0-9_-]+)$ /index.php?note=$1;
@@ -30,6 +32,7 @@ location / {
 ```
 
 If notepad is in a subdirectory:
+
 ```
 location ~* ^/notes/([a-zA-Z0-9_-]+)$ {
     try_files $uri /notes/index.php?note=$1;
@@ -48,7 +51,6 @@ location ~* ^/notes/([a-zA-Z0-9_-]+)$ {
 
 ![Firefox Android](https://orga.cat/sites/default/files/images/android_firefox.png)
 
-
 ## Copyright and license
 
 Copyright 2012 Pere Orga <pere@orga.cat>
@@ -57,7 +59,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.
 You may obtain a copy of the License at:
 
-   http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
