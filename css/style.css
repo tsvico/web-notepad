@@ -10,6 +10,10 @@ body {
   height: 100%;
   margin: 0 auto;
 }
+.title {
+  margin-top: 1em;
+  left: 20px;
+}
 /*文本*/
 .content {
   position: relative;

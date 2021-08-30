@@ -1,7 +1,7 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-$base_url = 'https://notes.orga.cat';
+$base_url = 'http://www.peoplevip.cn';
 
 // Path to the directory to save the notes in, without trailing slash.
 // Should be outside of the document root, if possible.
@@ -52,17 +52,64 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <meta name="generator" content="Minimalist Web Notepad (https://github.com/pereorga/minimalist-web-notepad)">
     <title><?php print $_GET['note']; ?></title>
     <link rel="shortcut icon" href="<?php print $base_url; ?>/favicon.ico">
-    <link rel="stylesheet" href="<?php print $base_url; ?>/styles.css">
+    <link rel="stylesheet" href="<?php print $base_url; ?>/css/style.css" />
+    <link rel="stylesheet" href="<?php print $base_url; ?>/css/prism.css" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="//res.weiunity.com" />
+    <script src="https://res.weiunity.com/msg/msg.js"></script>
+    <!--dis-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/theme/mdn-like.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.css" />
 </head>
 <body>
-    <div class="container">
-        <textarea id="content"><?php
+<div id="box">
+      <div class="title">
+        ✍️ 📔 on ☁️ ,😄
+      </div>
+      <br />
+
+      <div class="content">
+        <textarea class="text" name="text" cols="100" rows="25" style="display: none"><?php
             if (is_file($path)) {
                 print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
             }
         ?></textarea>
+        <div class="markdown" style="display: none"></div>
+      </div>
+
+      <div id="btn">
+        <hr />
+        <button id="btn01">URL QrCode</button>
+        <button id="btn02">Copy Text</button>
+        <div class="lab">
+          <input type="checkbox" name="" id="markdownSwitch" />
+          <label id="md" class="switch" for="markdownSwitch">
+            <span class="ball"></span>
+          </label>
+          <span class="btntext">Markdown View</span>
+        </div>
+      </div>
     </div>
-    <pre id="printable"></pre>
-    <script src="<?php print $base_url; ?>/script.js"></script>
+    <script>
+        const showMarkdown = <?php print is_file($path) ? 'true' : 'false';?>;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/continuelist.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/mode/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/keymap/sublime.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/searchcursor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/comment/comment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.js"></script>
+    <script src="<?php print $base_url; ?>/js/prism.js"></script>
+    <script src="<?php print $base_url; ?>/js/main.js"></script>
 </body>
 </html>

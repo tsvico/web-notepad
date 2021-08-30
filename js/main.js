@@ -23,19 +23,19 @@
     matchBrackets: true, //括号匹配
     extraKeys: { Enter: "newlineAndIndentContinueMarkdownList" },
   });
-  editor.on("change", editorOnHandler);
+  // prettier-ignore
+  editor.on("change",debounce((cm) => {
+      uploadContent(cm.getValue());
+    }, 2000)
+  );
 
-  function editorOnHandler(cm, co) {
-    console.log(cm.getValue());
-  }
-
-  //Copy Text
+  // Copy Text
   $("#btn02").click(() => {
     copyToClip(editor.getValue());
     msg.success("复制成功");
   });
 
-  //Copy Url
+  // Qrcode 生成
   $("#btn01").click(async () => {
     let thisPageUrl = window.location.href;
     let img = await generateQR(thisPageUrl);
@@ -53,7 +53,6 @@
   let text = $(".CodeMirror");
   $("#md").click(() => {
     let isChecked = document.getElementById("markdownSwitch").checked;
-    console.log(isChecked);
     if (!isChecked) {
       let txt = editor.getValue();
       if (!txt) {
@@ -92,6 +91,7 @@
       console.error(err);
     }
   };
+
   function init() {
     if (showMarkdown) {
       let txt = editor.getValue() || $(".text").val();
@@ -115,3 +115,51 @@
   }
   init();
 })();
+let content = $(".text").val();
+/**
+ * 上传函数
+ * @param {*} text 文本
+ */
+function uploadContent(text) {
+  try {
+    // If textarea value changes.
+    if (content !== text) {
+      var request = new XMLHttpRequest();
+
+      request.open("POST", window.location.href, true);
+      request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+      request.onload = function () {
+        if (request.readyState === 4) {
+          // 请求已结束
+          content = text;
+        }
+      };
+      request.onerror = function () {
+        // 发生错误，1s后重试
+        setTimeout(uploadContent(text), 1000);
+      };
+      request.send("text=" + encodeURIComponent(text));
+    }
+  } catch (e) {
+    console.log("可能是未初始化的错误，忽略此信息", e);
+  }
+}
+
+/**
+ * 防抖函数
+ * @param {*} func 函数
+ * @param {*} wait 时间 单位毫秒
+ * @returns
+ */
+function debounce(func, wait) {
+  var timer;
+  return function () {
+    var args = arguments; // arguments中存着event
+
+    if (timer) clearTimeout(timer);
+
+    timer = setTimeout(function () {
+      func.apply(this, args);
+    }, wait);
+  };
+}
