@@ -1,0 +1,339 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#box {
+  max-width: 980px;
+  height: 100%;
+  margin: 0 auto;
+}
+/*文本*/
+.content {
+  position: relative;
+  width: 100%;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  height: 80%;
+}
+
+.content .CodeMirror {
+  font-size: 18px;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px #ddd solid;
+  outline: none;
+}
+/*原始*/
+.text {
+  position: absolute;
+  font-size: 100%;
+  margin: 0;
+  overflow-y: auto;
+  resize: none;
+  box-sizing: border-box;
+  border: 1px #ddd solid;
+  outline: none;
+  width: 100%;
+}
+/*zhuan*/
+.markdown {
+  position: absolute;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 100%;
+  padding: 3px 8px 2px 8px;
+  font-family: "Avenir Next", Helvetica, Arial, sans-serif;
+  padding: 1em;
+  margin: auto;
+  max-width: 42em;
+  background: #fefefe;
+}
+
+.markdown > h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+.markdown > h1 {
+  color: #000000;
+  font-size: 28pt;
+  border-bottom: 1px solid #cccccc;
+}
+
+.markdown > h2 {
+  color: #000000;
+  font-size: 24px;
+}
+
+.markdown > h3 {
+  font-size: 18px;
+}
+
+.markdown > h4 {
+  font-size: 16px;
+}
+
+.markdown > h5 {
+  font-size: 14px;
+}
+
+.markdown > h6 {
+  color: #777777;
+  background-color: inherit;
+  font-size: 14px;
+}
+
+.markdown > hr {
+  height: 0.2em;
+  border: 0;
+  color: #dc143c;
+  background-color: #dc143c;
+}
+
+.markdown > p,
+blockquote,
+ul,
+ol,
+dl,
+li,
+table,
+pre {
+  margin: 15px 0;
+}
+.markdown > blockquote p::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  border-radius: 8px;
+  background: #c8ccd0;
+}
+.markdown > blockquote {
+  color: #535a60;
+  padding: 0.8em 0.8em 0.8em 1em;
+  position: relative;
+}
+.markdown > a,
+a:visited {
+  color: #4183c4;
+  background-color: inherit;
+  text-decoration: none;
+}
+
+.markdown > #message {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  display: block;
+  width: 100%;
+  height: 60px;
+  margin: 6px 0px;
+}
+
+.markdown > button,
+#ws {
+  font-size: 10pt;
+  padding: 4px 6px;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  background-color: #eee;
+}
+
+.markdown > code,
+pre,
+#ws,
+#message {
+  font-family: Consolas;
+  font-size: 12pt;
+}
+
+.markdown > code {
+  border: 1px solid #eaeaea;
+  margin: 0 2px;
+  padding: 0 5px;
+}
+
+.markdown > pre {
+  border: 1px solid #cccccc;
+  overflow: auto;
+  padding: 2px 2px;
+}
+
+.markdown > pre > code {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.markdown > #ws {
+  background-color: #dc143c;
+}
+
+.markdown > .send {
+  color: #77bb77;
+}
+.markdown > .server {
+  color: #7799bb;
+}
+.markdown > .error {
+  color: #aa0000;
+}
+
+.markdown > .markdown > table tr:nth-child(2n) {
+  background-color: #dc143c;
+}
+/*
+Monokai style - ported by Luigi Maselli - http://grigio.org
+*/
+
+.markdown > .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #272822;
+  color: #ddd;
+}
+
+.markdown > .hljs-tag,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-strong,
+.hljs-name {
+  color: #f92672;
+}
+
+.markdown > .hljs-code {
+  color: #66d9ef;
+}
+
+.markdown > .hljs-class .hljs-title {
+  color: white;
+}
+
+.markdown > .hljs-attribute,
+.hljs-symbol,
+.hljs-regexp,
+.hljs-link {
+  color: #bf79db;
+}
+
+.markdown > .hljs-string,
+.hljs-bullet,
+.hljs-subst,
+.hljs-title,
+.hljs-section,
+.hljs-emphasis,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #a6e22e;
+}
+
+.markdown > .hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e;
+}
+
+.markdown > .hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-selector-id {
+  font-weight: bold;
+}
+
+.markdown > img {
+  max-width: 70%;
+}
+.btntext {
+  display: inline-block;
+}
+#btn {
+  left: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 100;
+}
+button {
+  background-color: #fff;
+  border: none;
+}
+#btn01,
+#btn02 {
+  width: 100px;
+  height: 30px;
+  margin-left: 1px;
+  background: #00b5ad;
+
+  position: relative;
+}
+#btn01 {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-right: #fff 10px;
+}
+#btn02 {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+/* 滑动按钮 */
+.lab {
+  width: 200px;
+  display: inline-block;
+}
+.lab > .text {
+  margin: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+[type="checkbox"] {
+  display: none;
+}
+.switch {
+  width: 50px;
+  height: 20px;
+  background: #f3f3f3;
+  display: inline-block;
+  border-radius: 20px;
+}
+.switch > .ball {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  background: #f9f9f9;
+  border: 2px solid #e5e5e5;
+  margin: 0px;
+}
+[type="checkbox"]:checked + label {
+  background: greenyellow;
+}
+[type="checkbox"]:checked + label > .ball {
+  margin-left: 31px;
+}

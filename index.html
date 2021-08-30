@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>云笔记</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/prism.css" />
+    <script src="https://res.weiunity.com/msg/msg.js"></script>
+    <!--dis-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/theme/mdn-like.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.css" />
+    <script>
+      let showMarkdown = true;
+    </script>
+  </head>
+  <body>
+    <div id="box">
+      <div class="tital">
+        <span id="tital">Make a note on cloud :-)</span>
+      </div>
+      <br />
+
+      <div class="content">
+        <textarea class="text" name="text" cols="100" rows="25"></textarea>
+        <div class="markdown" style="display: none"></div>
+      </div>
+
+      <div id="btn">
+        <button id="btn01">URL QrCode</button>
+
+        <button id="btn02">Copy Text</button>
+        <div class="lab">
+          <input type="checkbox" name="" id="markdownSwitch" />
+          <label id="md" class="switch" for="markdownSwitch">
+            <span class="ball"></span>
+          </label>
+          <span class="btntext">Markdown View</span>
+        </div>
+        <hr />
+      </div>
+    </div>
+
+    <!-- <div id="content"></div> -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/continuelist.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/mode/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/keymap/sublime.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/searchcursor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/comment/comment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.js"></script>
+    <script src="js/prism.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
