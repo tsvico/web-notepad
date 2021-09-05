@@ -56,8 +56,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <link rel="stylesheet" href="<?php print $base_url; ?>/css/prism.css" />
     <meta http-equiv="x-dns-prefetch-control" content="on" />
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
-    <link rel="dns-prefetch" href="//res.weiunity.com" />
-    <script src="https://res.weiunity.com/msg/msg.js"></script>
+    <script src="js/msg.js"></script>
     <!--dis-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/theme/mdn-like.css" />
@@ -83,6 +82,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
         <hr />
         <button id="btn01">URL QrCode</button>
         <button id="btn02">Copy Text</button>
+        <button id="btn03">Notes List</button>
         <div class="lab">
           <input type="checkbox" name="" id="markdownSwitch" />
           <label id="md" class="switch" for="markdownSwitch">

@@ -112,6 +112,7 @@
       msg.close();
       markdown.show(); // 显示元素
     }
+    // window.location.pathname
   }
   init();
 })();
