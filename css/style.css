@@ -317,8 +317,7 @@ button {
   border: none;
 }
 #btn01,
-#btn02,
-#btn03 {
+#btn02 {
   width: 100px;
   height: 30px;
   margin-left: 1px;
@@ -332,7 +331,7 @@ button {
   border-bottom-left-radius: 8px;
   border-right: #fff 10px;
 }
-#btn03 {
+#btn02 {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }

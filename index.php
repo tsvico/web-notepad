@@ -82,7 +82,6 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
         <hr />
         <button id="btn01">URL QrCode</button>
         <button id="btn02">Copy Text</button>
-        <button id="btn03">Notes List</button>
         <div class="lab">
           <input type="checkbox" name="" id="markdownSwitch" />
           <label id="md" class="switch" for="markdownSwitch">
