@@ -23,18 +23,20 @@ if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) ||
 $path = $save_path . '/' . $_GET['note'];
 
 if (isset($_POST['text'])) {
-
-    // Update file.
-    file_put_contents($path, $_POST['text']);
-
-    // If provided input is empty, delete file.
-    if (!strlen($_POST['text'])) {
-        unlink($path);
+    $text = gzdecode(base64_decode($_POST['text']));
+    if($text !== false){
+      // Update file.
+      file_put_contents($path,$text);
+      // var_dump($text);
+      // If provided input is empty, delete file.
+      if (!strlen($text)) {
+          unlink($path);
+      }
+      die;
     }
-    die;
 }
 
-// Print raw file if the client is curl, wget, or when explicitly requested.
+// 如果客户端是curl、wget，或明确要求时，打印原始文件。
 if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || strpos($_SERVER['HTTP_USER_AGENT'], 'Wget') === 0) {
     if (is_file($path)) {
         header('Content-type: text/plain');
@@ -110,5 +112,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.js"></script>
     <script src="<?php print $base_url; ?>/js/prism.js"></script>
     <script src="<?php print $base_url; ?>/js/main.js"></script>
+    <!--gzip-->
+    <script src="https://cdn.jsdelivr.net/npm/pako@1.0.10/dist/pako.min.js"></script>
 </body>
 </html>

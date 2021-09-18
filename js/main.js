@@ -139,7 +139,7 @@ function uploadContent(text) {
         // 发生错误，1s后重试
         setTimeout(uploadContent(text), 1000);
       };
-      request.send("text=" + encodeURIComponent(text));
+      request.send("text=" + encodeURIComponent(zip(text)));
     }
   } catch (e) {
     console.log("可能是未初始化的错误，忽略此信息", e);
@@ -163,4 +163,17 @@ function debounce(func, wait) {
       func.apply(this, args);
     }, wait);
   };
+}
+
+/**
+ * 压缩
+ * @param {*} str
+ * @returns
+ */
+function zip(str) {
+  if (!str) {
+    return "";
+  }
+  const binaryString = pako.gzip(str, { to: "string" });
+  return btoa(binaryString);
 }
