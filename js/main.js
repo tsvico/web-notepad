@@ -29,6 +29,52 @@
     }, 2000)
   );
 
+  editor.on("paste", function (editor, e) {
+    // console.log(e.clipboardData)
+    if (!(e.clipboardData && e.clipboardData.items)) {
+      msg.failure("该浏览器不支持操作");
+      return;
+    }
+    for (var i = 0, len = e.clipboardData.items.length; i < len; i++) {
+      var item = e.clipboardData.items[i];
+      // console.log(item.kind+":"+item.type);
+      if (item.kind === "string") {
+        item.getAsString(function (str) {
+          // str 是获取到的字符串
+        });
+      } else if (item.kind === "file") {
+        var pasteFile = item.getAsFile();
+        // pasteFile就是获取到的文件
+        fileUpload(pasteFile, (url) => {
+          if (!url) {
+            msg.failure("未获取到地址");
+            return;
+          }
+          editor.replaceSelection(`![临时图片](${url})\n`);
+        });
+      }
+    }
+  });
+
+  editor.on("drop", function (editor, e) {
+    // console.log(e.dataTransfer.files[0]);
+    if (!(e.dataTransfer && e.dataTransfer.files)) {
+      msg.failure("该浏览器不支持操作");
+      return;
+    }
+    for (var i = 0; i < e.dataTransfer.files.length; i++) {
+      console.log(e.dataTransfer.files[i]);
+      fileUpload(e.dataTransfer.files[i], (url) => {
+        if (!url) {
+          msg.failure("未获取到地址");
+          return;
+        }
+        editor.replaceSelection(`![临时图片](${url})\n`);
+      });
+    }
+    e.preventDefault();
+  });
+
   // Copy Text
   $("#btn02").click(() => {
     copyToClip(editor.getValue());
@@ -177,3 +223,46 @@ function zip(str) {
   const binaryString = pako.gzip(str, { to: "string" });
   return btoa(binaryString);
 }
+
+/**
+ * 文件上传
+ * @param {*} fileObj 文件
+ * @param {*} callback 回调函数
+ */
+function fileUpload(fileObj, callback) {
+  var data = new FormData();
+  msg.loading("上传中...");
+  /**以下上传代码根据实际情况替换 */
+  data.append("image", fileObj);
+  data.append("token", "8337effca0ddfcd9c5899f3509b23657");
+  var xhr = new XMLHttpRequest();
+  xhr.open("post", "https://xx.img", true);
+  /************ */
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      const result = JSON.parse(xhr.responseText || "{}");
+      msg.close();
+      msg.success("上传成功，图片将在24后删除");
+      if (callback) {
+        callback(result.url || "");
+      }
+    }
+  };
+  xhr.send(data);
+}
+
+/**
+ * 阻止浏览器默认打开拖拽文件的行为
+ */
+window.addEventListener(
+  "drop",
+  (e) => {
+    e = e || event;
+    e.preventDefault();
+    if (e.target.tagName == "textarea") {
+      // check wich element is our target
+      e.preventDefault();
+    }
+  },
+  false
+);
