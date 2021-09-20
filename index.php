@@ -66,8 +66,8 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script src="js/msg.js"></script>
     <!--dis-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/theme/mdn-like.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/theme/mdn-like.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.min.css" />
 </head>
 <body>
 <div id="box">
@@ -104,18 +104,18 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/continuelist.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/closebrackets.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/mode/markdown/markdown.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/keymap/sublime.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/search.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/searchcursor.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/display/placeholder.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/comment/comment.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/continuelist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/mode/markdown/markdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/keymap/sublime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/search.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/searchcursor.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/display/placeholder.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/comment/comment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.min.js"></script>
     <script src="<?php print $base_url; ?>/js/prism.js"></script>
     <script src="<?php print $base_url; ?>/js/main.js"></script>
     <!--gzip-->
