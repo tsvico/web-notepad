@@ -22,6 +22,7 @@
     keyMap: "sublime",
     matchBrackets: true, //括号匹配
     extraKeys: { Enter: "newlineAndIndentContinueMarkdownList" },
+    placeholder: "支持markdown\n支持图片粘贴/拖拽上传",
   });
   // prettier-ignore
   editor.on("change",debounce((cm) => {

@@ -23,7 +23,12 @@ if (!isset($_GET['note']) || !preg_match('/^[a-zA-Z0-9_-]+$/', $_GET['note']) ||
 $path = $save_path . '/' . $_GET['note'];
 
 if (isset($_POST['text'])) {
-    $text = gzdecode(base64_decode($_POST['text']));
+    if(!empty($_POST['text'])){
+      $text = gzdecode(base64_decode($_POST['text']));
+    }else {
+      $text = "";
+    }
+    
     if($text !== false){
       // Update file.
       file_put_contents($path,$text);
@@ -108,6 +113,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/search.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/searchcursor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/display/placeholder.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/comment/comment.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.js"></script>
     <script src="<?php print $base_url; ?>/js/prism.js"></script>
