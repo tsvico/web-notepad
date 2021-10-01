@@ -68,11 +68,18 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/theme/mdn-like.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/hint/show-hint.min.css" />
 </head>
 <body>
 <div id="box">
-      <div class="title">
-        ✍️ 📔 on ☁️ ,😄
+<div class="title">
+  <div style="float: left;"><h4 style="transform:translate(50%, -50%);">✍️ 📔 on ☁️ ,😄</h4></div>
+        
+        <form action="/" class="code_box">
+              <input type="text" name="code" id="id_code_txt" class="code_txt" value="<?php echo $_GET['note'];?>" disabled="disabled">
+              <div class="code_input_icon"></div>
+              <input type="submit" id="id_btn_edit" class="code_btn btn_edit" value="">
+          </form>
       </div>
       <br />
 
@@ -86,9 +93,10 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
       </div>
 
       <div id="btn">
-        <hr />
-        <button id="btn01">URL QrCode</button>
-        <button id="btn02">Copy Text</button>
+        <hr />  
+        <button id="btn01">扫码</button>
+        <button id="btn02">复制</button>
+        <button id="btn03">删除</button>
         <div class="lab">
           <input type="checkbox" name="" id="markdownSwitch" />
           <label id="md" class="switch" for="markdownSwitch">
@@ -116,6 +124,8 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/display/placeholder.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/comment/comment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.min.js"></script>
+    <!--提示-->
+    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/hint/show-hint.min.js"></script>
     <script src="<?php print $base_url; ?>/js/prism.js"></script>
     <script src="<?php print $base_url; ?>/js/main.js"></script>
     <!--gzip-->

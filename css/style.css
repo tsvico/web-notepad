@@ -38,14 +38,15 @@ body::-webkit-scrollbar-track {
   margin: 0 auto;
 }
 .title {
-  margin-top: 1em;
+  margin-top: 0.8rem;
   left: 20px;
+  height: 2.8rem;
 }
 /*文本*/
 .content {
   position: relative;
   width: 100%;
-  top: 20px;
+  top: 0.3rem;
   right: 20px;
   bottom: 20px;
   left: 20px;
@@ -317,7 +318,8 @@ button {
   border: none;
 }
 #btn01,
-#btn02 {
+#btn02,
+#btn03 {
   width: 100px;
   height: 30px;
   margin-left: 1px;
@@ -331,7 +333,7 @@ button {
   border-bottom-left-radius: 8px;
   border-right: #fff 10px;
 }
-#btn02 {
+#btn03 {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
@@ -374,4 +376,57 @@ button {
 }
 [type="checkbox"]:checked + label > .ball {
   margin-left: 31px;
+}
+
+/******************************
+ code_box
+*******************************/
+.code_box {
+  float: right;
+  /*height: 50px;*/
+}
+.code_input_icon {
+  width: 46px;
+  height: 46px;
+  background: url("/img/top_logo.png") no-repeat scroll 3px 3px / 40px 40px;
+  display: block;
+  float: left;
+  margin-left: -323px;
+  opacity: 0.8;
+}
+
+.code_txt {
+  padding: 0 5px 0 50px;
+  border-radius: 5px;
+  height: 46px;
+  color: #5a5a5a;
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  float: left;
+  width: 270px;
+  border: 1px solid #ddd;
+}
+.txt_edit_able {
+  background-color: #fff;
+  border: 2px solid #4a8bf5;
+  font-weight: bold;
+}
+.code_btn {
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  margin: 0;
+  display: block;
+  float: right;
+  border-radius: 5px;
+}
+.btn_edit {
+  border: 1px solid #ccc;
+  background: #f5f5f5 url("/img/edit.png") no-repeat scroll 9px 9px / 28px 28px;
+  opacity: 0.5;
+}
+.btn_go {
+  border: 1px solid #3079ed;
+  background: #4a8bf5 url("/img/ok.png") no-repeat scroll 7px 7px / 32px 32px;
 }

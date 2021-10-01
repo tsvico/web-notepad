@@ -82,6 +82,12 @@
     msg.success("复制成功");
   });
 
+  // 删除
+  $("#btn03").click(() => {
+    editor.setValue("");
+    msg.success("删除成功");
+  });
+
   // Qrcode 生成
   $("#btn01").click(async () => {
     let thisPageUrl = window.location.href;
@@ -138,6 +144,23 @@
       console.error(err);
     }
   };
+
+  $(".code_box").submit(function () {
+    var btn = $("#id_btn_edit");
+    var txt = $("#id_code_txt");
+
+    if (btn.hasClass("btn_edit")) {
+      btn.removeClass("btn_edit").addClass("btn_go");
+      txt.attr("disabled", false).addClass("txt_edit_able");
+      $(".btn_delete").attr("disabled", true);
+    } else if (btn.hasClass("btn_go")) {
+      var code_val = txt.val();
+      code_val = $.trim(code_val);
+      window.location.href = "/" + encodeURI(code_val);
+    }
+
+    return false;
+  });
 
   function init() {
     if (showMarkdown) {
