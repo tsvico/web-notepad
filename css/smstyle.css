@@ -1,4 +1,4 @@
-@media only screen and (min-width: 320px) and (max-width: 440px) {
+@media only screen and (min-width: 320px) and (max-width: 400px) {
   html,
   body {
     height: 40rem !important;
@@ -10,9 +10,6 @@
   }
   .code_input_icon {
     margin-left: -20rem !important;
-  }
-  .code_txt {
-    /*width: unset !important;*/
   }
   .code_box {
     margin-right: 3rem !important;
@@ -28,12 +25,29 @@
 }
 @media only screen and (max-width: 320px) {
   html {
-    font-size: 14px !important;
+    font-size: 10px !important;
   }
 }
 @media only screen and (min-width: 320px) {
   html {
-    font-size: 14px !important;
+    font-size: 12px !important;
+  }
+}
+@media only screen and (min-width: 401px) and (max-width: 640px) {
+  html {
+    font-size: 15px !important;
+  }
+  .content {
+    width: 93%;
+  }
+  .title {
+    height: 6.8rem;
+  }
+  .code_box {
+    margin-right: 2rem;
+  }
+  .markdown {
+    width: 91%;
   }
 }
 @media only screen and (min-width: 640px) {
