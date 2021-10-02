@@ -37,6 +37,9 @@ body::-webkit-scrollbar-track {
   height: 100%;
   margin: 0 auto;
 }
+.title-text {
+  float: left;
+}
 .title {
   margin-top: 0.8rem;
   left: 20px;
@@ -391,7 +394,7 @@ button {
   background: url("/img/top_logo.png") no-repeat scroll 3px 3px / 40px 40px;
   display: block;
   float: left;
-  margin-left: -323px;
+  margin-left: -18rem;
   opacity: 0.8;
 }
 
@@ -404,7 +407,7 @@ button {
   font-weight: bold;
   display: block;
   float: left;
-  width: 270px;
+  width: 15rem;
   border: 1px solid #ddd;
 }
 .txt_edit_able {

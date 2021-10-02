@@ -156,7 +156,8 @@
     } else if (btn.hasClass("btn_go")) {
       var code_val = txt.val();
       code_val = $.trim(code_val);
-      window.location.href = "/" + encodeURI(code_val);
+      console.log(baseUrl + "/" + encodeURI(code_val));
+      window.location.href = baseUrl + "/" + encodeURI(code_val);
     }
 
     return false;

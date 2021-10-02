@@ -60,6 +60,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <title><?php print $_GET['note']; ?></title>
     <link rel="shortcut icon" href="<?php print $base_url; ?>/favicon.ico">
     <link rel="stylesheet" href="<?php print $base_url; ?>/css/style.css" />
+    <link rel="stylesheet" href="<?php print $base_url; ?>/css/smstyle.css" />
     <link rel="stylesheet" href="<?php print $base_url; ?>/css/prism.css" />
     <meta http-equiv="x-dns-prefetch-control" content="on" />
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
@@ -73,7 +74,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
 <body>
 <div id="box">
 <div class="title">
-  <div style="float: left;"><h4 style="transform:translate(50%, -50%);">✍️ 📔 on ☁️ ,😄</h4></div>
+  <div class="title-text"><h4 style="transform:translate(50%, -50%);">✍️ 📔 on ☁️ ,😄</h4></div>
         
         <form action="/" class="code_box">
               <input type="text" name="code" id="id_code_txt" class="code_txt" value="<?php echo $_GET['note'];?>" disabled="disabled">
@@ -108,6 +109,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     </div>
     <script>
         const showMarkdown = <?php print is_file($path) ? 'true' : 'false';?>;
+        const baseUrl = "<?php print $base_url; ?>";
     </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
