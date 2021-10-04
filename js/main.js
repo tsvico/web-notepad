@@ -156,6 +156,10 @@
     } else if (btn.hasClass("btn_go")) {
       var code_val = txt.val();
       code_val = $.trim(code_val);
+      if (/\W/.test(code_val)) {
+        msg.failure("只允许英文与数字");
+        return;
+      }
       console.log(baseUrl + "/" + encodeURI(code_val));
       window.location.href = baseUrl + "/" + encodeURI(code_val);
     }
