@@ -158,7 +158,7 @@
       code_val = $.trim(code_val);
       if (/\W/.test(code_val)) {
         msg.failure("只允许英文与数字");
-        return;
+        return false;
       }
       console.log(baseUrl + "/" + encodeURI(code_val));
       window.location.href = baseUrl + "/" + encodeURI(code_val);
