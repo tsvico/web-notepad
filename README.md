@@ -42,11 +42,9 @@ location ~* ^/notes/([a-zA-Z0-9_-]+)$ {
 
 ## Screenshots
 
-![Firefox](https://orga.cat/sites/default/files/images/firefox.png)
+![edit—view](https://cdn.jsdelivr.net/gh/tsvico/WebCDN/ImageHosting/image-20211012085919159.png)
 
-![IE](https://orga.cat/sites/default/files/images/ie.png)
-
-![Edge](https://orga.cat/sites/default/files/images/edge.png)
+![markdown-view](https://cdn.jsdelivr.net/gh/tsvico/WebCDN/ImageHosting/image-20211012090048160.png)
 
 ![Chrome Android](https://orga.cat/sites/default/files/images/android_chrome_dark.png)
 
