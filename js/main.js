@@ -84,8 +84,29 @@
 
   // 删除
   $("#btn03").click(() => {
-    editor.setValue("");
-    msg.success("删除成功");
+    let txt = editor.getValue();
+    if (!txt) {
+      // 没有文本
+      msg.failure("没有获取到任何内容,无需进行此操作");
+      return;
+    }
+    msg.confirm({
+      text: "确定要删除吗？此操作将清空当前内容,请谨慎操作",
+      buttons: {
+        确定: function () {
+          editor.setValue("");
+          uploadContent("");
+          msg.loading("同步中");
+          setTimeout(() => {
+            location.reload();
+            msg.close();
+          }, 1000);
+        },
+        取消: function () {
+          msg.success("已取消");
+        },
+      },
+    });
   });
 
   // Qrcode 生成
