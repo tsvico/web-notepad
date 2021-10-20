@@ -119,12 +119,10 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/matchbrackets.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/closebrackets.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/mode/markdown/markdown.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/keymap/sublime.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/search.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/searchcursor.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/display/placeholder.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/comment/comment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.min.js"></script>
     <!--提示-->
     <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/hint/show-hint.min.js"></script>

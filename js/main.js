@@ -19,10 +19,9 @@
     showCursorWhenSelecting: true,
     lineWrapping: true, // 长句子折行
     theme: "mdn-like", // "material",
-    keyMap: "sublime",
     matchBrackets: true, //括号匹配
     extraKeys: { Enter: "newlineAndIndentContinueMarkdownList" },
-    placeholder: "支持markdown\n支持图片粘贴/拖拽上传",
+    // placeholder:,
   });
   // prettier-ignore
   editor.on("change",debounce((cm) => {
@@ -316,3 +315,18 @@ window.addEventListener(
   },
   false
 );
+
+if (!window.localStorage.getItem("msg")) {
+  msg.confirm({
+    text: "使用说明：\n第一步：点上面的齿轮(会变成蓝色箭头)，设置一个用来传递消息的地址（可以使用常用的ID、特殊简写或手机号等任意内容，最好跟别人不冲突），点击蓝色箭头进入该地址。 \n第二步：输入或粘贴内容到这里，此内容将会自动保存。(支持markdown、支持图片粘贴/拖拽上传)。\n第三步：以二维码方式或复制URL地址分享给别人/其他设备。\n第四步：在另一台设备上以同样的方式进入之前的地址，就会看到之前保存的内容。".replaceAll(
+      "\n",
+      "<br>"
+    ),
+    buttons: {
+      不再弹出: function () {
+        window.localStorage.setItem("msg", false);
+      },
+      确定: function () {},
+    },
+  });
+}
