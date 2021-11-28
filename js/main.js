@@ -136,7 +136,7 @@
       }
       text.hide();
       msg.loading("转换中");
-      markdown.html(marked(txt));
+      markdown.html(marked.parse(txt));
       $(".markdown pre code").each(function (i, block) {
         Prism.highlightElement(block);
       });
@@ -200,7 +200,7 @@
       editor.setValue(txt);
       text.hide();
       msg.loading("转换中");
-      markdown.html(marked(txt));
+      markdown.html(marked.parse(txt));
       $(".markdown pre code").each(function (i, block) {
         Prism.highlightElement(block);
       });
