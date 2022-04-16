@@ -1,6 +1,6 @@
 # Web Notepad
 
-支持 markdown![visitors](https://visitor-badge.glitch.me/badge?page_id=tsvico.web-notepad&left_color=green&right_color=red)
+支持 markdown  ![visitors](https://visitor-badge.glitch.me/badge?page_id=tsvico.web-notepad&left_color=green&right_color=red)
 
 This is an open source clone of notepad.cc, which is now defunct.
 

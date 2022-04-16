@@ -38,12 +38,13 @@ body::-webkit-scrollbar-track {
   margin: 0 auto;
 }
 .title-text {
-  float: left;
+  /**float: left;**/
 }
 .title {
   margin-top: 0.8rem;
-  left: 20px;
   height: 2.8rem;
+  display: flex;
+  justify-content: space-between;
 }
 /*文本*/
 .content {
@@ -310,7 +311,7 @@ Monokai style - ported by Luigi Maselli - http://grigio.org
 #btn {
   left: 0;
   position: fixed;
-  bottom: 0;
+  bottom: 3px;
   width: 100%;
   text-align: center;
   z-index: 100;
@@ -385,7 +386,7 @@ button {
  code_box
 *******************************/
 .code_box {
-  float: right;
+  /**float: right;**/
   /*height: 50px;*/
 }
 .code_input_icon {
@@ -432,4 +433,17 @@ button {
 .btn_go {
   border: 1px solid #3079ed;
   background: #4a8bf5 url("/img/ok.png") no-repeat scroll 7px 7px / 32px 32px;
+}
+
+.btn_delete{
+  background-color: #ee4b42 !important;
+  border: 1px solid #f9574e;
+}
+
+.time_view {
+  font-size: 10px;
+  height: 20px;
+  color: #999;
+  margin: 0.9rem 0 0;
+  text-align: center;
 }
