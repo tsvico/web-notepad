@@ -355,7 +355,7 @@ button {
   text-align: center;
 }
 
-[type="checkbox"] {
+.lab > [type="checkbox"] {
   display: none;
 }
 .switch {
