@@ -189,7 +189,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>>
+  <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>
 
   <script src="./js/prism.js"></script>
   <script src="./js/main.js"></script>

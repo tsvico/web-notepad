@@ -447,3 +447,18 @@ button {
   margin: 0.9rem 0 0;
   text-align: center;
 }
+
+@media (max-width: 768px){
+  .title-text{
+     display: none;
+  }
+  .title {
+    display: grid;
+  }
+  .vditor-toolbar {
+    display: none;
+  }
+  .code_box {
+    padding-left: 3rem;
+  }
+}
