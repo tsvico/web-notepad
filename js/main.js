@@ -1,5 +1,6 @@
 (function () {
   const vditor = new Vditor("vditor", {
+    mode: 'wysiwyg',
     debugger: false,
     // 禁用缓存
     cache: {
