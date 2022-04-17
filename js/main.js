@@ -1,89 +1,99 @@
 (function () {
-  // marked
-  const markedRender = new marked.Renderer();
-  marked.setOptions({
-    renderer: markedRender,
-    gfm: true,
-    tables: true,
-    breaks: true, // '>' 换行，回车换成 <br>
-    pedantic: false,
-    smartLists: true,
-    smartypants: false,
-  });
-
-  // codemirror editor
-  const editor = CodeMirror.fromTextArea($(".text").get(0), {
-    mode: "markdown",
-    lineNumbers: true,
-    autoCloseBrackets: true,
-    showCursorWhenSelecting: true,
-    lineWrapping: true, // 长句子折行
-    theme: "mdn-like", // "material",
-    matchBrackets: true, //括号匹配
-    extraKeys: { Enter: "newlineAndIndentContinueMarkdownList" },
-    // placeholder:,
-  });
-  // prettier-ignore
-  editor.on("change",debounce((cm) => {
-      uploadContent(cm.getValue());
-    }, 1000)
-  );
-
-  editor.on("paste", function (editor, e) {
-    // console.log(e.clipboardData)
-    if (!(e.clipboardData && e.clipboardData.items)) {
-      msg.failure("该浏览器不支持操作");
-      return;
-    }
-    for (var i = 0, len = e.clipboardData.items.length; i < len; i++) {
-      var item = e.clipboardData.items[i];
-      // console.log(item.kind+":"+item.type);
-      if (item.kind === "string") {
-        item.getAsString(function (str) {
-          // str 是获取到的字符串
-        });
-      } else if (item.kind === "file") {
-        var pasteFile = item.getAsFile();
-        // pasteFile就是获取到的文件
-        fileUpload(pasteFile, (url) => {
+  const vditor = new Vditor("vditor", {
+    debugger: false,
+    // 禁用缓存
+    cache: {
+      enable: false,
+    },
+    input(changeValue) {
+      debounce((changeValue) => {
+        uploadContent(changeValue);
+      }, 1000)(changeValue);
+    },
+    preview: {
+      markdown: {
+        toc: true,
+        mark: true,
+        footnotes: true,
+        autoSpace: true,
+      },
+      hljs: {
+        enable: true,
+        style: "monokailight",
+      },
+      math: {
+        engine: "KaTeX",
+      },
+    },
+    toolbar: [
+      "emoji",
+      "headings",
+      "bold",
+      "italic",
+      "strike",
+      "link",
+      "|",
+      "list",
+      "ordered-list",
+      "check",
+      "outdent",
+      "indent",
+      "|",
+      "quote",
+      "line",
+      "code",
+      "inline-code",
+      "insert-before",
+      "insert-after",
+      "|",
+      "upload",
+      "table",
+      "|",
+      "undo",
+      "redo",
+      "|",
+      "fullscreen",
+      "edit-mode",
+      {
+        name: "more",
+        toolbar: ["both", "code-theme", "content-theme", "outline", "preview"],
+      },
+    ],
+    upload: {
+      url: "#",
+      accept: "image/*",
+      multiple: false,
+      handler(file) {
+        if(file[0].size > (20 * 1024)){
+          msg.failure("暂时不支持太大的图片<br>可以在新页面上传后<br>复制markdown格式链接粘贴到此处");
+          setTimeout(()=>{
+            let aDom = document.createElement('a');
+            aDom.target = '_blank';
+            aDom.href = "https://imgtu.com/";
+            aDom.click();
+          },2000)
+          return;
+        }
+        fileUpload(file[0], (url) => {
           if (!url) {
             msg.failure("未获取到地址");
             return;
           }
-          editor.replaceSelection(`![临时图片](${url})\n`);
+          vditor.insertValue(`![tmp](${url})\n\n`);
         });
       }
-    }
-  });
-
-  editor.on("drop", function (editor, e) {
-    // console.log(e.dataTransfer.files[0]);
-    if (!(e.dataTransfer && e.dataTransfer.files)) {
-      msg.failure("该浏览器不支持操作");
-      return;
-    }
-    for (var i = 0; i < e.dataTransfer.files.length; i++) {
-      console.log(e.dataTransfer.files[i]);
-      fileUpload(e.dataTransfer.files[i], (url) => {
-        if (!url) {
-          msg.failure("未获取到地址");
-          return;
-        }
-        editor.replaceSelection(`![临时图片](${url})\n`);
-      });
-    }
-    e.preventDefault();
+    },
   });
 
   // Copy Text
   $("#btn02").click(() => {
-    copyToClip(editor.getValue());
+    copyToClip(vditor.getValue());
     msg.success("复制成功");
   });
 
   // 删除
   $("#btn03").click(() => {
-    let txt = editor.getValue();
+    let txt = vditor.getValue();
     if (!txt) {
       // 没有文本
       msg.failure("没有获取到任何内容,无需进行此操作");
@@ -93,7 +103,7 @@
       text: "确定要删除吗？此操作将清空当前内容,请谨慎操作",
       buttons: {
         确定: function () {
-          editor.setValue("");
+          vditor.setValue("");
           uploadContent("");
           msg.loading("同步中");
           setTimeout(() => {
@@ -123,26 +133,25 @@
 
   // MarkDown View
   let markdown = $(".markdown");
-  let text = $(".CodeMirror");
+  let text = $("#vditor");
   $("#md").click(() => {
     let isChecked = document.getElementById("markdownSwitch").checked;
     if (!isChecked) {
-      let txt = editor.getValue();
+      let txt = vditor.getValue();
       if (!txt) {
         // 没有文本
         msg.failure("没有获取到任何内容");
         document.getElementById("markdownSwitch").checked = true;
         return;
       }
-      text.hide();
+      vditor.disabled();
       msg.loading("转换中");
-      markdown.html(marked.parse(txt));
-      $(".markdown pre code").each(function (i, block) {
-        Prism.highlightElement(block);
-      });
+      markdown.html(vditor.getHTML());
+      text.hide();
       msg.close();
       markdown.show(); // 显示元素
     } else {
+      vditor.enable();
       markdown.hide();
       text.show();
     }
@@ -189,7 +198,7 @@
 
   function init() {
     if (showMarkdown) {
-      let txt = editor.getValue() || $(".text").val();
+      let txt = $(".text").val();
       if (!txt) {
         // 没有文本
         msg.failure("没有获取到任何内容");
@@ -197,7 +206,7 @@
         return;
       }
       document.getElementById("markdownSwitch").checked = true;
-      editor.setValue(txt);
+      // vditor.setValue(txt);
       text.hide();
       msg.loading("转换中");
       markdown.html(marked.parse(txt));
@@ -211,6 +220,7 @@
   }
   init();
 })();
+
 let content = $(".text").val();
 /**
  * 上传函数
@@ -279,25 +289,16 @@ function zip(str) {
  * @param {*} callback 回调函数
  */
 function fileUpload(fileObj, callback) {
-  var data = new FormData();
   msg.loading("上传中...");
-  /**以下上传代码根据实际情况替换 */
-  data.append("image", fileObj);
-  data.append("token", "8337effca0ddfcd9c5899f3509b23657");
-  var xhr = new XMLHttpRequest();
-  xhr.open("post", "https://xx.img", true);
-  /************ */
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4) {
-      const result = JSON.parse(xhr.responseText || "{}");
-      msg.close();
-      msg.success("上传成功，图片将在24后删除");
-      if (callback) {
-        callback(result.url || "");
-      }
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    msg.close();
+    msg.success("上传成功,点击Markdown View可以预览");
+    if (callback) {
+      callback(e.target.result || "");
     }
   };
-  xhr.send(data);
+  reader.readAsDataURL(fileObj);
 }
 
 /**

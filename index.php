@@ -1,8 +1,8 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-// $base_url = 'http://localhost';
-$base_url = 'https://www.tooln.cn';
+$base_url = 'http://localhost';
+// $base_url = 'https://www.tooln.cn';
 
 // Path to the directory to save the notes in, without trailing slash.
 // Should be outside of the document root, if possible.
@@ -89,10 +89,8 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   <script src="js/msg.js"></script>
   <!--dis-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/theme/mdn-like.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror/addon/hint/show-hint.min.css" />
+  <!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/vditor@x.x.x/dist... -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
 </head>
 
 <body>
@@ -116,10 +114,12 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <br />
 
     <div class="content">
-      <textarea class="text" name="text" cols="100" rows="25" style="display: none"><?php
+      <div id="vditor" style="height: 100%">
+         <textarea class="text" name="text" cols="100" rows="25" style="display: none"><?php
           if (is_file($path)) {
             print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
           }?></textarea>
+      </div>
       <div class="markdown" style="display: none"></div>
     </div>
     <div id="btn">
@@ -189,18 +189,8 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/lib/codemirror.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/continuelist.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/matchbrackets.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/edit/closebrackets.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/mode/markdown/markdown.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/search.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/search/searchcursor.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/dialog/dialog.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/display/placeholder.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/wrap/hardwrap.min.js"></script>
-  <!--提示-->
-  <script src="https://cdn.jsdelivr.net/npm/codemirror/addon/hint/show-hint.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>>
+
   <script src="./js/prism.js"></script>
   <script src="./js/main.js"></script>
   <!--gzip-->

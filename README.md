@@ -1,12 +1,9 @@
 # Web Notepad
 
-支持 markdown  ![visitors](https://visitor-badge.glitch.me/badge?page_id=tsvico.web-notepad&left_color=green&right_color=red)
+支持 markdown , 编辑器基于[Vditor](https://github.com/Vanessa219/vditor)构建
 
-This is an open source clone of notepad.cc, which is now defunct.
+![visitors](https://visitor-badge.glitch.me/badge?page_id=tsvico.web-notepad&left_color=green&right_color=red)
 
-See demo at https://notes.orga.cat or https://notes.orga.cat/whatever.
-
-A version that allows for optional encryption using the Web Crypto API is available at the [encryption](https://github.com/pereorga/minimalist-web-notepad/tree/encryption) branch. A version with Docker is available at the [docker](https://github.com/pereorga/minimalist-web-notepad/tree/docker) branch.
 
 ## Installation
 
