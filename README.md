@@ -4,6 +4,8 @@
 
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=tsvico.web-notepad&left_color=green&right_color=red)
 
+> 基于 [minimalist-web-notepad](https://github.com/pereorga/minimalist-web-notepad) 项目二次开发
+> 由于和原项目代码相差较多，所以新建仓库
 
 ## Installation
 
@@ -39,13 +41,9 @@ location ~* ^/notes/([a-zA-Z0-9_-]+)$ {
 
 ## Screenshots
 
-![edit—view](https://cdn.jsdelivr.net/gh/tsvico/WebCDN/ImageHosting/image-20211012085919159.png)
+![edit—view](https://s1.ax1x.com/2022/05/06/OnfXDO.png)
 
 ![markdown-view](https://cdn.jsdelivr.net/gh/tsvico/WebCDN/ImageHosting/image-20211012090048160.png)
-
-![Chrome Android](https://orga.cat/sites/default/files/images/android_chrome_dark.png)
-
-![Firefox Android](https://orga.cat/sites/default/files/images/android_firefox.png)
 
 ## Copyright and license
 
