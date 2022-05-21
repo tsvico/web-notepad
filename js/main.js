@@ -1,15 +1,18 @@
 (function () {
+  const inputChange =  debounce((changeValue) => {
+        uploadContent(changeValue);
+  }, 1000)
   const vditor = new Vditor("vditor", {
-    mode: 'wysiwyg',
+    mode: 'sv',
+    height: "100%",
     debugger: false,
     // 禁用缓存
     cache: {
       enable: false,
     },
+    cdn: "https://npm.elemecdn.com/vditor@latest",
     input(changeValue) {
-      debounce((changeValue) => {
-        uploadContent(changeValue);
-      }, 1000)(changeValue);
+      inputChange(changeValue);
     },
     preview: {
       markdown: {

@@ -462,3 +462,7 @@ button {
     padding-left: 3rem;
   }
 }
+
+#vditor {
+  height: 100% !important;
+}

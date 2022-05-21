@@ -1,7 +1,7 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-$base_url = 'http://localhost';
+$base_url = 'https://www.tooln.cn/notes';
 // $base_url = 'https://www.tooln.cn';
 
 // Path to the directory to save the notes in, without trailing slash.
@@ -86,11 +86,11 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <link rel="stylesheet" href="./css/smstyle.css" />
   <link rel="stylesheet" href="./css/prism.css" />
   <meta http-equiv="x-dns-prefetch-control" content="on" />
-  <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="//lib.baomitu.com" />
   <script src="js/msg.js"></script>
   <!--dis-->
-  <!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/vditor@x.x.x/dist... -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor/dist/index.css" />
+  <!-- ⚠️生产环境请指定版本号，如 https://unpkg.com/vditor@latest/dist/index.min.js... -->
+<link rel="stylesheet" href="https://npm.elemecdn.com/vditor@latest/dist/index.css" />
 </head>
 
 <body>
@@ -114,7 +114,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <br />
 
     <div class="content">
-      <div id="vditor" style="height: 100%">
+      <div id="vditor">
          <textarea class="text" name="text" cols="100" rows="25" style="display: none"><?php
           if (is_file($path)) {
             print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
@@ -186,15 +186,15 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
       }
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js"></script>
+  <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://lib.baomitu.com/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://lib.baomitu.com/marked/4.0.2/marked.min.js"></script>
+  <script src="https://npm.elemecdn.com/vditor@latest/dist/index.min.js"></script>
 
   <script src="./js/prism.js"></script>
   <script src="./js/main.js"></script>
   <!--gzip-->
-  <script async src="https://cdn.jsdelivr.net/npm/pako@1.0.10/dist/pako.min.js"></script>
+  <script async src="https://lib.baomitu.com/pako/1.0.11/pako.min.js"></script>
 </body>
 
 </html>
