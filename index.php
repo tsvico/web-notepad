@@ -90,7 +90,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <script src="js/msg.js"></script>
   <!--dis-->
   <!-- ⚠️生产环境请指定版本号，如 https://unpkg.com/vditor@latest/dist/index.min.js... -->
-<link rel="stylesheet" href="https://npm.elemecdn.com/vditor@latest/dist/index.css" />
+  <link rel="stylesheet" href="https://unpkg.com/vditor@latest/dist/index.css" />
 </head>
 
 <body>
@@ -188,7 +188,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://lib.baomitu.com/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script src="https://lib.baomitu.com/marked/4.0.2/marked.min.js"></script>
-  <script src="https://npm.elemecdn.com/vditor@latest/dist/index.min.js"></script>
+  <script src="https://unpkg.com/vditor@latest/dist/index.min.js"></script>
 
   <script src="./js/prism.js"></script>
   <script src="./js/main.js"></script>
