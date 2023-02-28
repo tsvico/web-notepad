@@ -120,7 +120,6 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
             print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
           }?></textarea>
       </div>
-      <div class="markdown" style="display: none"></div>
     </div>
     <div id="btn">
       <hr />
@@ -132,7 +131,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
         <label id="md" class="switch" for="markdownSwitch">
           <span class="ball"></span>
         </label>
-        <span class="btntext">Markdown View</span>
+        <span class="btntext">预览</span>
       </div>
     </div>
   </div>

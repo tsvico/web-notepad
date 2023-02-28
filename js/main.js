@@ -1,16 +1,22 @@
 (function () {
-  const inputChange =  debounce((changeValue) => {
-        uploadContent(changeValue);
-  }, 1000)
+  const inputChange = debounce((changeValue) => {
+    uploadContent(changeValue);
+  }, 1000);
+  let txt = $(".text").val();
+
+  function changePreviewStatus(vditor) {
+    vditor.vditor.toolbar.elements.preview.firstElementChild.dispatchEvent(new CustomEvent("click"));
+  }
+
   const vditor = new Vditor("vditor", {
-    mode: 'sv',
+    mode: "sv",
     height: "100%",
     debugger: false,
     // 禁用缓存
     cache: {
       enable: false,
     },
-    cdn: "https://npm.elemecdn.com/vditor@latest",
+    cdn: "https://unpkg.com/vditor@3.8.15",
     input(changeValue) {
       inputChange(changeValue);
     },
@@ -68,14 +74,14 @@
       accept: "image/*",
       multiple: false,
       handler(file) {
-        if(file[0].size > (20 * 1024)){
+        if (file[0].size > 20 * 1024) {
           msg.failure("暂时不支持太大的图片<br>可以在新页面上传后<br>复制markdown格式链接粘贴到此处");
-          setTimeout(()=>{
-            let aDom = document.createElement('a');
-            aDom.target = '_blank';
+          setTimeout(() => {
+            let aDom = document.createElement("a");
+            aDom.target = "_blank";
             aDom.href = "https://imgtu.com/";
             aDom.click();
-          },2000)
+          }, 2000);
           return;
         }
         fileUpload(file[0], (url) => {
@@ -85,6 +91,18 @@
           }
           vditor.insertValue(`![tmp](${url})\n\n`);
         });
+      },
+    },
+    after: () => {
+      if (showMarkdown) {
+        if (!txt) {
+          // 没有文本
+          msg.failure("没有获取到任何内容");
+          document.getElementById("markdownSwitch").checked = false;
+          return;
+        }
+        document.getElementById("markdownSwitch").checked = true;
+        changePreviewStatus(vditor);
       }
     },
   });
@@ -135,9 +153,7 @@
     });
   });
 
-  // MarkDown View
-  let markdown = $(".markdown");
-  let text = $("#vditor");
+  // 预览按钮
   $("#md").click(() => {
     let isChecked = document.getElementById("markdownSwitch").checked;
     if (!isChecked) {
@@ -149,15 +165,10 @@
         return;
       }
       vditor.disabled();
-      msg.loading("转换中");
-      markdown.html(vditor.getHTML());
-      text.hide();
-      msg.close();
-      markdown.show(); // 显示元素
+      changePreviewStatus(vditor);
     } else {
       vditor.enable();
-      markdown.hide();
-      text.show();
+      changePreviewStatus(vditor);
     }
   });
 
@@ -199,30 +210,6 @@
 
     return false;
   });
-
-  function init() {
-    if (showMarkdown) {
-      let txt = $(".text").val();
-      if (!txt) {
-        // 没有文本
-        msg.failure("没有获取到任何内容");
-        document.getElementById("markdownSwitch").checked = false;
-        return;
-      }
-      document.getElementById("markdownSwitch").checked = true;
-      // vditor.setValue(txt);
-      text.hide();
-      msg.loading("转换中");
-      markdown.html(marked.parse(txt));
-      $(".markdown pre code").each(function (i, block) {
-        Prism.highlightElement(block);
-      });
-      msg.close();
-      markdown.show(); // 显示元素
-    }
-    // window.location.pathname
-  }
-  init();
 })();
 
 let content = $(".text").val();
