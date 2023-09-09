@@ -39,6 +39,12 @@ location ~* ^/notes/([a-zA-Z0-9_-]+)$ {
 }
 ```
 
+add config support sse
+
+```
+fastcgi_read_timeout 600s;
+```
+
 ## Screenshots
 
 ![edit—view](https://s1.ax1x.com/2022/05/06/OnfXDO.png)

@@ -2,6 +2,7 @@
 set_time_limit(0);
 header('X-Accel-Buffering: no');
 header('Content-Type: text/event-stream');
+header('Connection: keep-alive');
 header('Cache-Control: no-cache');
 ob_end_clean();
 ob_implicit_flush(1);
@@ -13,11 +14,16 @@ if (!isset($_GET['note'])) {
 
 $save_path = '_tmp';
 $path = $save_path . '/' . $_GET['note'];
-
-while (1) {
+$old_data = '';
+for ($i = 0; $i < 100; $i++) {
 
     if (file_exists($path)) {
         $data = base64_encode(gzencode(file_get_contents($path)));
+        if ($old_data == $data) {
+            $data = "";
+        } else {
+            $old_data = $data;
+        }
     } else {
         $data = "";
     }

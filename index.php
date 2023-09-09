@@ -193,7 +193,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <!-- https://github.com/soldair/node-qrcode -->
   <script src="https://lib.baomitu.com/qrcode/1.5.1/qrcode.min.js"></script>
   <script src="<?php echo $unpkg_cdn_host ?>/vditor@latest/dist/index.min.js"></script>
-  <script src="<?php echo $unpkg_cdn_host ?>/pako@2.1.0/dist/pako.min.js"></script>
+  <script src="<?php echo $unpkg_cdn_host ?>/pako@1.0.1/dist/pako.min.js"></script>
 
   <script src="./js/prism.js"></script>
   <script src="./js/data.js"></script>

@@ -5,7 +5,6 @@
   const markdownSwitch = document.getElementById("markdownSwitch");
 
   markdownSwitch.addEventListener("change", function () {
-    console.log(this.checked);
     if (this.checked) {
       let txt = vditor.getValue();
       if (!txt) {
