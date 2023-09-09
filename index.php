@@ -88,7 +88,11 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <link rel="stylesheet" href="./css/prism.css" />
   <meta http-equiv="x-dns-prefetch-control" content="on" />
   <link rel="dns-prefetch" href="//lib.baomitu.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
   <script src="js/msg.js"></script>
+  <!--dis-->
+  <!-- ⚠️生产环境请指定版本号，如 https://unpkg.com/vditor@latest/dist/index.min.js... -->
+  <link rel="stylesheet" href="https://unpkg.com/vditor@latest/dist/index.css" />
 </head>
 
 <body>
@@ -124,6 +128,13 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
       <button id="btn01">扫码</button>
       <button id="btn02">复制</button>
       <button id="btn03" class="btn_delete">删除</button>
+      <div class="lab">
+        <input type="checkbox" name="" id="markdownSwitch" />
+        <label id="md" class="switch" for="markdownSwitch">
+          <span class="ball"></span>
+        </label>
+        <span class="btntext">预览</span>
+      </div>
     </div>
   </div>
   <script>
@@ -176,6 +187,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   </script>
   <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://lib.baomitu.com/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://unpkg.com/vditor@latest/dist/index.min.js"></script>
   <script src="./js/prism.js"></script>
   <script src="./js/main.js"></script>
   <!--gzip-->
