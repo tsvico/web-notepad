@@ -8,6 +8,11 @@ $base_url = 'http://localhost';
 // Should be outside of the document root, if possible.
 $save_path = '_tmp';
 
+// 不需要加/ 
+// 格式均参照https://unpkg.com
+// back https://fastly.jsdelivr.net/npm
+$unpkg_cdn_host = 'https://npm.onmicrosoft.cn';
+
 /**
  * 文件默认过期时间，单位：天
  */
@@ -88,11 +93,10 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <link rel="stylesheet" href="./css/prism.css" />
   <meta http-equiv="x-dns-prefetch-control" content="on" />
   <link rel="dns-prefetch" href="//lib.baomitu.com" />
-  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="<?php echo $unpkg_cdn_host ?>" />
   <script src="js/msg.js"></script>
-  <!--dis-->
-  <!-- ⚠️生产环境请指定版本号，如 https://unpkg.com/vditor@latest/dist/index.min.js... -->
-  <link rel="stylesheet" href="https://unpkg.com/vditor@latest/dist/index.css" />
+  <!--dist-->
+  <link rel="stylesheet" href="<?php echo $unpkg_cdn_host ?>/vditor@latest/dist/index.css" />
 </head>
 
 <body>
@@ -130,7 +134,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
       <button id="btn03" class="btn_delete">删除</button>
       <div class='checkbox'>
         <input type='checkbox' id='markdownSwitch' name='checkboox[]'>
-        <label id="md" for='markdownSwitch'>预览</label>
+        <label for='markdownSwitch'>预览</label>
       </div>
     </div>
   </div>
@@ -139,6 +143,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     const baseUrl = "<?php print $base_url; ?>";
     const modifiedTime = <?php print is_file($path) ? filemtime($path) + ($expired_day * 24 * 3600) : 'null' ?>;
     const note = "<?php echo $_GET['note']; ?>";
+    const unpkg_cdn_host = "<?php echo $unpkg_cdn_host; ?>"
 
 
     window.onload = () => {
@@ -184,16 +189,15 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
       }
     }
   </script>
-  <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script>
+  <script src="<?php echo $unpkg_cdn_host ?>/jquery@3.6.0/dist/jquery.min.js"></script>
+  <!-- https://github.com/soldair/node-qrcode -->
   <script src="https://lib.baomitu.com/qrcode/1.5.1/qrcode.min.js"></script>
-  <!--<script src="https://lib.baomitu.com/marked/4.0.2/marked.min.js"></script>-->
-  <script src="https://unpkg.com/vditor@latest/dist/index.min.js"></script>
+  <script src="<?php echo $unpkg_cdn_host ?>/vditor@latest/dist/index.min.js"></script>
+  <script src="<?php echo $unpkg_cdn_host ?>/pako@2.1.0/dist/pako.min.js"></script>
 
   <script src="./js/prism.js"></script>
   <script src="./js/data.js"></script>
   <script src="./js/main.js"></script>
-  <!--gzip-->
-  <script async src="https://lib.baomitu.com/pako/1.0.11/pako.min.js"></script>
 </body>
 
 </html>

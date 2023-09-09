@@ -2,7 +2,27 @@
   const inputChange = debounce((changeValue) => {
     uploadContent(changeValue);
   }, 1000);
-  let txt = $(".text").val();
+  const markdownSwitch = document.getElementById("markdownSwitch");
+
+  markdownSwitch.addEventListener("change", function () {
+    console.log(this.checked);
+    if (this.checked) {
+      let txt = vditor.getValue();
+      if (!txt) {
+        // 没有文本
+        msg.failure("没有获取到任何内容");
+        markdownSwitch.checked = true;
+        return;
+      }
+      msg.info("已开启数据同步");
+      vditor.disabled();
+      changePreviewStatus(vditor);
+    } else {
+      msg.info("已关闭数据同步");
+      vditor.enable();
+      changePreviewStatus(vditor);
+    }
+  });
 
   function changePreviewStatus(vditor) {
     vditor.vditor.toolbar.elements.preview.firstElementChild.dispatchEvent(new CustomEvent("click"));
@@ -16,7 +36,7 @@
     cache: {
       enable: false,
     },
-    cdn: "https://unpkg.com/vditor@3.8.15",
+    cdn: unpkg_cdn_host + "/vditor@3.8.15",
     input(changeValue) {
       inputChange(changeValue);
     },
@@ -96,14 +116,10 @@
     },
     after: () => {
       if (showMarkdown) {
-        if (!txt) {
-          // 没有文本
-          msg.failure("没有获取到任何内容");
-          document.getElementById("markdownSwitch").checked = false;
-          return;
-        }
-        document.getElementById("markdownSwitch").checked = true;
+        markdownSwitch.checked = true;
+        // 因为首次还没创建监听，所以首次不会触发markdownSwitch change，需要手动changePreviewStatus
         changePreviewStatus(vditor);
+        msg.info("已开启数据同步");
 
         msg_init((data) => {
           const old = vditor.getValue().trim();
@@ -111,7 +127,7 @@
           if (old != new_data) {
             // console.log(old);
             // console.log(new_data);
-            if (document.getElementById("markdownSwitch").checked) {
+            if (markdownSwitch.checked) {
               msg.loading("页面已被其他人修改,正在重新请求");
               setTimeout(() => {
                 msg.close();
@@ -168,25 +184,6 @@
       width: "10rem",
       height: "10rem",
     });
-  });
-
-  // 预览按钮
-  $("#md").click(() => {
-    let isChecked = document.getElementById("markdownSwitch").checked;
-    if (!isChecked) {
-      let txt = vditor.getValue();
-      if (!txt) {
-        // 没有文本
-        msg.failure("没有获取到任何内容");
-        document.getElementById("markdownSwitch").checked = true;
-        return;
-      }
-      vditor.disabled();
-      changePreviewStatus(vditor);
-    } else {
-      vditor.enable();
-      changePreviewStatus(vditor);
-    }
   });
 
   function copyToClip(content) {
@@ -327,7 +324,7 @@ window.addEventListener(
 
 if (!window.localStorage.getItem("msg")) {
   msg.confirm({
-    text: "使用说明：\n第一步：点上面的齿轮(会变成蓝色箭头)，设置一个用来传递消息的地址（可以使用常用的ID、特殊简写或手机号等任意内容，最好跟别人不冲突），点击蓝色箭头进入该地址。 \n第二步：输入或粘贴内容到这里，此内容将会自动保存。(支持markdown、支持图片粘贴/拖拽上传)。\n第三步：以二维码方式或复制URL地址分享给别人/其他设备。\n第四步：在另一台设备上以同样的方式进入之前的地址，就会看到之前保存的内容。\n\n保存后内容仅保留48小时".replaceAll(
+    text: "使用说明：\n第一步：点上面的齿轮(会变成蓝色箭头)，设置一个用来传递消息的地址（可以使用常用的ID、特殊简写或手机号等任意内容，最好跟别人不冲突），点击蓝色箭头进入该地址。 \n第二步：输入或粘贴内容到这里，此内容将会自动保存。(支持markdown、支持图片粘贴/拖拽上传)。\n第三步：以二维码方式或复制URL地址分享给别人/其他设备。\n第四步：在另一台设备上以同样的方式进入之前的地址，就会看到之前保存的内容（支持自动同步）。\n\n保存后内容仅保留48小时".replaceAll(
       "\n",
       "<br>"
     ),
