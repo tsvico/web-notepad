@@ -125,15 +125,19 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     </div>
     <div id="btn">
       <hr />
-      <button id="btn01">扫码</button>
-      <button id="btn02">复制</button>
+      <button id="btn01" class="niceButton">扫码</button>
+      <button id="btn02" class="niceButton">复制</button>
       <button id="btn03" class="btn_delete">删除</button>
-      <div class="lab">
+      <!-- <div class="lab">
         <input type="checkbox" name="" id="markdownSwitch" />
         <label id="md" class="switch" for="markdownSwitch">
           <span class="ball"></span>
         </label>
         <span class="btntext">预览</span>
+      </div> -->
+      <div class='checkbox'>
+        <input type='checkbox' id='markdownSwitch' name='checkboox[]'>
+        <label id="md" for='markdownSwitch'>预览</label>
       </div>
     </div>
   </div>

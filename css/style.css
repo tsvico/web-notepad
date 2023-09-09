@@ -321,67 +321,94 @@ button {
   background-color: #fff;
   border: none;
 }
-#btn01,
-#btn02,
-#btn03 {
+.niceButton {
+  position: relative;
+  background-color: rgb(32, 93, 224);
+  border: none;
+  color: #ffffff;
   width: 100px;
   height: 30px;
-  margin-left: 1px;
-  background: #00b5ad;
-
-  cursor: pointer;
-  position: relative;
-}
-#btn01 {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-right: #fff 10px;
-}
-#btn03 {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
-/* 滑动按钮 */
-.lab {
-  /*width: 200px;*/
-  display: inline-block;
-  border: 0.2rem solid #cccccc;
-  border-radius: 5px 0;
-}
-.lab > .text {
-  margin: 10px;
-  font-size: 14px;
   text-align: center;
-}
-
-.lab > [type="checkbox"] {
-  display: none;
-}
-.switch {
-  width: 50px;
-  height: 20px;
-  background: #f3f3f3;
-  display: inline-block;
-  border-radius: 20px;
+  transition-duration: 0.6s;
+  text-decoration: none;
+  overflow: hidden;
   cursor: pointer;
 }
-.switch > .ball {
+.niceButton::after {
+  content: "";
+  background: #53a4f0;
   display: block;
-  width: 15px;
-  height: 15px;
-  border-radius: 15px;
-  background: #f9f9f9;
-  border: 2px solid #e5e5e5;
-  margin: 0px;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
 }
-[type="checkbox"]:checked + label {
-  background: greenyellow;
-}
-[type="checkbox"]:checked + label > .ball {
-  margin-left: 31px;
+.niceButton:active::after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
 }
 
+.checkbox {
+  position: relative;
+  height: 30px;
+  display: inline-block;
+}
+.checkbox input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+.checkbox label {
+  position: inherit;
+  left: 30px;
+  top: 0;
+  height: 20px;
+  line-height: 20px;
+}
+.checkbox label:before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+}
+
+.checkbox label:after {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 3px;
+  width: 6px;
+  height: 12px;
+  border: 0;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  background: #fff;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+}
+.checkbox input[type="checkbox"]:checked + label:before {
+  background: #4cd764;
+  border-color: #4cd764;
+}
+.checkbox input[type="checkbox"]:checked + label:after {
+  background: #4cd764;
+}
 /******************************
  code_box
 *******************************/
@@ -435,9 +462,36 @@ button {
   background: #4a8bf5 url("/img/ok.png") no-repeat scroll 7px 7px / 32px 32px;
 }
 
-.btn_delete{
-  background-color: #ee4b42 !important;
-  border: 1px solid #f9574e;
+.btn_delete {
+  position: relative;
+  background-color: #ee4b42;
+  border: none;
+  color: #ffffff;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+  transition-duration: 0.6s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn_delete::after {
+  content: "";
+  background: #53a4f0;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s;
+}
+.btn_delete:active::after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s;
 }
 
 .time_view {
@@ -448,9 +502,9 @@ button {
   text-align: center;
 }
 
-@media (max-width: 768px){
-  .title-text{
-     display: none;
+@media (max-width: 768px) {
+  .title-text {
+    display: none;
   }
   .title {
     display: grid;
