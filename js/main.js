@@ -30,6 +30,7 @@
       hljs: {
         enable: true,
         style: "monokailight",
+        lineNumber: true,
       },
       math: {
         engine: "KaTeX",
@@ -103,6 +104,22 @@
         }
         document.getElementById("markdownSwitch").checked = true;
         changePreviewStatus(vditor);
+
+        msg_init((data) => {
+          const old = vditor.getValue().trim();
+          const new_data = data.trim();
+          if (old != new_data) {
+            // console.log(old);
+            // console.log(new_data);
+            if (document.getElementById("markdownSwitch").checked) {
+              msg.loading("页面已被其他人修改,正在重新请求");
+              setTimeout(() => {
+                msg.close();
+                vditor.setValue(data);
+              }, 800);
+            }
+          }
+        });
       }
     },
   });
@@ -264,7 +281,7 @@ function debounce(func, wait) {
 /**
  * 压缩
  * @param {*} str
- * @returns
+ * @returns base64
  */
 function zip(str) {
   if (!str) {

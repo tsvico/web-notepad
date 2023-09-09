@@ -1,7 +1,7 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-$base_url = 'https://tooln.cn/notes';
+$base_url = 'http://localhost';
 // $base_url = 'https://www.tooln.cn';
 
 // Path to the directory to save the notes in, without trailing slash.
@@ -128,13 +128,6 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
       <button id="btn01" class="niceButton">扫码</button>
       <button id="btn02" class="niceButton">复制</button>
       <button id="btn03" class="btn_delete">删除</button>
-      <!-- <div class="lab">
-        <input type="checkbox" name="" id="markdownSwitch" />
-        <label id="md" class="switch" for="markdownSwitch">
-          <span class="ball"></span>
-        </label>
-        <span class="btntext">预览</span>
-      </div> -->
       <div class='checkbox'>
         <input type='checkbox' id='markdownSwitch' name='checkboox[]'>
         <label id="md" for='markdownSwitch'>预览</label>
@@ -145,6 +138,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     const showMarkdown = <?php print is_file($path) ? 'true' : 'false'; ?>;
     const baseUrl = "<?php print $base_url; ?>";
     const modifiedTime = <?php print is_file($path) ? filemtime($path) + ($expired_day * 24 * 3600) : 'null' ?>;
+    const note = "<?php echo $_GET['note']; ?>";
 
 
     window.onload = () => {
@@ -196,6 +190,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
   <script src="https://unpkg.com/vditor@latest/dist/index.min.js"></script>
 
   <script src="./js/prism.js"></script>
+  <script src="./js/data.js"></script>
   <script src="./js/main.js"></script>
   <!--gzip-->
   <script async src="https://lib.baomitu.com/pako/1.0.11/pako.min.js"></script>
