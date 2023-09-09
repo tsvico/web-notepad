@@ -1,7 +1,7 @@
 <?php
 
 // Base URL of the website, without trailing slash.
-$base_url = 'http://localhost';
+$base_url = 'https://tooln.cn/notes';
 // $base_url = 'https://www.tooln.cn';
 
 // Path to the directory to save the notes in, without trailing slash.
@@ -116,7 +116,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     <br />
 
     <div class="content">
-      <div>
+      <div id="vditor">
         <textarea class="text" name="text" cols="100" rows="25" style="display: none"><?php
                                                                                       if (is_file($path)) {
                                                                                         print htmlspecialchars(file_get_contents($path), ENT_QUOTES, 'UTF-8');
@@ -138,6 +138,7 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     </div>
   </div>
   <script>
+    const showMarkdown = <?php print is_file($path) ? 'true' : 'false'; ?>;
     const baseUrl = "<?php print $base_url; ?>";
     const modifiedTime = <?php print is_file($path) ? filemtime($path) + ($expired_day * 24 * 3600) : 'null' ?>;
 
@@ -186,8 +187,10 @@ if (isset($_GET['raw']) || strpos($_SERVER['HTTP_USER_AGENT'], 'curl') === 0 || 
     }
   </script>
   <script src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://lib.baomitu.com/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://lib.baomitu.com/qrcode/1.5.1/qrcode.min.js"></script>
+  <!--<script src="https://lib.baomitu.com/marked/4.0.2/marked.min.js"></script>-->
   <script src="https://unpkg.com/vditor@latest/dist/index.min.js"></script>
+
   <script src="./js/prism.js"></script>
   <script src="./js/main.js"></script>
   <!--gzip-->
